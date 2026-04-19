@@ -167,12 +167,10 @@ Error generating stack: `+l.message+`
     var fixed = false;
 
     // Fix 1: Replace old quote with new quote
-    // Look for the paragraph containing the old quote text
     var allParas = document.querySelectorAll('p');
     for (var i = 0; i < allParas.length; i++) {
       var p = allParas[i];
       if (p.textContent && p.textContent.indexOf('Menopause is not the end of your story') !== -1) {
-        // Replace the entire paragraph content with the new quote
         p.innerHTML = '\u201cYou are not broken. You are not \u201ctoo much.\u201d You are in transition \u2014 and transitions deserve tenderness, information, and community.\u201d';
         fixed = true;
         break;
@@ -180,7 +178,6 @@ Error generating stack: `+l.message+`
     }
 
     // Fix 2: Replace "founder of Ancient Treasure" with "creator of My Ancient Treasure"
-    // Walk all text nodes and replace
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     var node;
     while (node = walker.nextNode()) {
@@ -194,10 +191,29 @@ Error generating stack: `+l.message+`
       }
     }
 
+    // Fix 3: Remove the placeholder label row
+    var allParas2 = document.querySelectorAll('p');
+    for (var j = 0; j < allParas2.length; j++) {
+      var p2 = allParas2[j];
+      if (p2.textContent && (
+        p2.textContent.indexOf('Placeholder') !== -1 ||
+        p2.textContent.indexOf('PLACEHOLDER') !== -1
+      ) && p2.textContent.indexOf('replace with a real quote') !== -1) {
+        // Remove the parent container (the flex row with the two lines)
+        var parent = p2.parentElement;
+        if (parent) {
+          parent.remove();
+        } else {
+          p2.remove();
+        }
+        fixed = true;
+        break;
+      }
+    }
+
     return fixed;
   }
 
-  // Try immediately, then retry a few times to catch React hydration
   var attempts = 0;
   var maxAttempts = 20;
   function tryFix() {
