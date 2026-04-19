@@ -161,4 +161,57 @@ Error generating stack: `+l.message+`
     });
   }, 2000);
 })();
+</script><script>
+(function() {
+  function applyFixes() {
+    var fixed = false;
+
+    // Fix 1: Replace old quote with new quote
+    // Look for the paragraph containing the old quote text
+    var allParas = document.querySelectorAll('p');
+    for (var i = 0; i < allParas.length; i++) {
+      var p = allParas[i];
+      if (p.textContent && p.textContent.indexOf('Menopause is not the end of your story') !== -1) {
+        // Replace the entire paragraph content with the new quote
+        p.innerHTML = '\u201cYou are not broken. You are not \u201ctoo much.\u201d You are in transition \u2014 and transitions deserve tenderness, information, and community.\u201d';
+        fixed = true;
+        break;
+      }
+    }
+
+    // Fix 2: Replace "founder of Ancient Treasure" with "creator of My Ancient Treasure"
+    // Walk all text nodes and replace
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while (node = walker.nextNode()) {
+      if (node.nodeValue && node.nodeValue.indexOf('founder of Ancient Treasure') !== -1) {
+        node.nodeValue = node.nodeValue.replace('founder of Ancient Treasure', 'creator of My Ancient Treasure');
+        fixed = true;
+      }
+      if (node.nodeValue && node.nodeValue.indexOf('founder of My Ancient Treasure') !== -1) {
+        node.nodeValue = node.nodeValue.replace('founder of My Ancient Treasure', 'creator of My Ancient Treasure');
+        fixed = true;
+      }
+    }
+
+    return fixed;
+  }
+
+  // Try immediately, then retry a few times to catch React hydration
+  var attempts = 0;
+  var maxAttempts = 20;
+  function tryFix() {
+    attempts++;
+    var fixed = applyFixes();
+    if (!fixed && attempts < maxAttempts) {
+      setTimeout(tryFix, 300);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(tryFix, 100); });
+  } else {
+    setTimeout(tryFix, 100);
+  }
+})();
 </script></body><div data-manus-selector-input="true" id="manus-previewer-root"></div></html>
