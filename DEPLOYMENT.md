@@ -1,0 +1,58 @@
+# MenoPause Resource Guide — Deployment & Recovery Record
+
+_Last verified from connected systems: 2026-09-09_
+
+## Canonical recovery source
+
+- Repository: `darnellt0/menopause-guide-download`
+- Branch: `master`
+- Role: preserved/recoverable source for the MenoPause resource guide
+- Do **not** confuse this repository with `darnellt0/menopause-unmasked-landing`, which is the separate February event landing page.
+
+## Original Manus location
+
+The preserved page source declares the original canonical Manus URL as:
+
+`https://menopauseguide.manus.space/guide`
+
+This Manus URL should be treated as legacy/origin history, not as the preferred long-term production endpoint.
+
+## Recreated production deployment
+
+The recent Work rebuild was reported as being recreated for Netlify, with the following deployment targets:
+
+- Hosting provider: Netlify
+- Reported Netlify site URL: `https://menopause-resource-guide.netlify.app`
+- Intended custom domain: `https://menopause.rent-a-president.com`
+- Reported Work-side source repository/project name: `menopause-resource-guide`
+
+### Verification status
+
+The Netlify site/project, custom-domain binding, DNS records, and the Work-side `menopause-resource-guide` repository are **not yet independently verified through the currently connected account integrations**. They must not be treated as fully locked until Netlify confirms the live site/project and domain mapping.
+
+## Production ownership rule
+
+Once Netlify verification is complete, this file should be updated so exactly one production chain is authoritative:
+
+`production URL -> Netlify site/project -> Git repository -> branch -> commit`
+
+The preferred production URL should be the custom domain if it is correctly configured and HTTPS-valid. The Netlify `.netlify.app` URL should remain available as the platform fallback.
+
+## Recovery procedure
+
+If the production deployment is lost or misconfigured:
+
+1. Start from this repository (`darnellt0/menopause-guide-download`, branch `master`) unless a later verified canonical production repository is recorded above.
+2. Preserve `index.html` and the `/assets` directory together.
+3. Deploy the static site to the approved hosting project.
+4. Verify the page renders correctly on both desktop and mobile.
+5. Verify all images, links, downloads, and calls to action.
+6. Verify HTTPS on the final production URL.
+7. Verify the custom-domain DNS points only to the current production host.
+8. Update this file with the exact host project, repo, branch, production commit, and domain records.
+
+## Change-control notes
+
+- Do not repurpose or overwrite `darnellt0/menopause-unmasked-landing`; it is a different project.
+- Do not remove this recovery repository until a newer canonical production repository has been independently verified and documented here.
+- Do not place API keys, DNS-provider credentials, Netlify tokens, or other secrets in this file or repository.
