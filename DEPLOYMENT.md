@@ -5,12 +5,13 @@ _Last verified from connected systems: 2026-09-09_
 ## Canonical recovery source
 
 - Repository: `darnellt0/menopause-guide-download`
-- Branch: `master`
+- Primary branch: `master`
+- Dedicated known-good recovery branch: `recovery/2026-09-09-known-good`
 - Known-good guide baseline commit: `3aca62dea94127e8a63406949bcc0f1607e2ac98`
 - Role: preserved/recoverable source for the MenoPause resource guide
 - Do **not** confuse this repository with `darnellt0/menopause-unmasked-landing`, which is the separate February event landing page.
 
-The baseline commit above is the last guide-content commit immediately before this deployment/recovery documentation was added. If `master` changes in the future and the live page needs to be reconstructed, start from that commit unless a newer verified production commit is documented below.
+The recovery branch is pinned to the last guide-content commit immediately before deployment/recovery documentation was added. If `master` changes in the future and the live page needs to be reconstructed, use the recovery branch/commit unless a newer verified production commit is documented below.
 
 ## Original Manus location
 
@@ -45,7 +46,7 @@ The preferred production URL should be the custom domain if it is correctly conf
 
 If the production deployment is lost or misconfigured:
 
-1. Start from known-good commit `3aca62dea94127e8a63406949bcc0f1607e2ac98` in `darnellt0/menopause-guide-download`, unless a later verified canonical production commit is recorded above.
+1. Start from branch `recovery/2026-09-09-known-good` (commit `3aca62dea94127e8a63406949bcc0f1607e2ac98`) in `darnellt0/menopause-guide-download`, unless a later verified canonical production commit is recorded above.
 2. Preserve `index.html` and the `/assets` directory together.
 3. Deploy the static site to the approved hosting project.
 4. Verify the page renders correctly on both desktop and mobile.
@@ -57,5 +58,6 @@ If the production deployment is lost or misconfigured:
 ## Change-control notes
 
 - Do not repurpose or overwrite `darnellt0/menopause-unmasked-landing`; it is a different project.
+- Do not delete or move the recovery branch until a newer canonical production recovery point has been independently verified and documented here.
 - Do not remove this recovery repository until a newer canonical production repository has been independently verified and documented here.
 - Do not place API keys, DNS-provider credentials, Netlify tokens, or other secrets in this file or repository.
