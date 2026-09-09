@@ -6,8 +6,11 @@ _Last verified from connected systems: 2026-09-09_
 
 - Repository: `darnellt0/menopause-guide-download`
 - Branch: `master`
+- Known-good guide baseline commit: `3aca62dea94127e8a63406949bcc0f1607e2ac98`
 - Role: preserved/recoverable source for the MenoPause resource guide
 - Do **not** confuse this repository with `darnellt0/menopause-unmasked-landing`, which is the separate February event landing page.
+
+The baseline commit above is the last guide-content commit immediately before this deployment/recovery documentation was added. If `master` changes in the future and the live page needs to be reconstructed, start from that commit unless a newer verified production commit is documented below.
 
 ## Original Manus location
 
@@ -42,7 +45,7 @@ The preferred production URL should be the custom domain if it is correctly conf
 
 If the production deployment is lost or misconfigured:
 
-1. Start from this repository (`darnellt0/menopause-guide-download`, branch `master`) unless a later verified canonical production repository is recorded above.
+1. Start from known-good commit `3aca62dea94127e8a63406949bcc0f1607e2ac98` in `darnellt0/menopause-guide-download`, unless a later verified canonical production commit is recorded above.
 2. Preserve `index.html` and the `/assets` directory together.
 3. Deploy the static site to the approved hosting project.
 4. Verify the page renders correctly on both desktop and mobile.
